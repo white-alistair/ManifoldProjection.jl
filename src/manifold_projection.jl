@@ -1,15 +1,15 @@
-struct ManifoldProjection{C<:Function, J<:Function, T<:AbstractFloat, M<:Integer}
+struct HairerManifoldProjection{C<:Function, J<:Function, T<:AbstractFloat, M<:Integer}
     constraints::C
     jacobian::J
     tolerance::T
     maxiters::M
 end
 
-function ManifoldProjection(constraints::C, jacobian::J, tolerance::T) where {C,J,T}
-    ManifoldProjection{C,J,T,Int64}(constraints, jacobian, tolerance, 10)
+function HairerManifoldProjection(constraints::C, jacobian::J, tolerance::T) where {C,J,T}
+    HairerManifoldProjection{C,J,T,Int64}(constraints, jacobian, tolerance, 10)
 end
 
-function (manifold_projection::ManifoldProjection{C,J,T,M})(u0::Vector{T}) where {C,J,T,M}
+function (manifold_projection::HairerManifoldProjection{C,J,T,M})(u0::Vector{T}) where {C,J,T,M}
     (; constraints, jacobian, tolerance, maxiters) = manifold_projection
 
     N = size(constraints(u0))[1]  # Number of constraints
@@ -27,9 +27,4 @@ function (manifold_projection::ManifoldProjection{C,J,T,M})(u0::Vector{T}) where
 
     @warn "maxiters exceeded for manifold projection, returning unprojected value"
     return u0
-end
-
-function (manifold_projection::ManifoldProjection{C,J,T,M})(integrator::OrdinaryDiffEq.ODEIntegrator) where {C,J,T,M}
-    integrator.u = manifold_projection(integrator.u)
-    return nothing
 end

@@ -1,8 +1,6 @@
 module ManifoldProjection
 
-export ManifoldProjection
-
-using OrdinaryDiffEq
+export HairerManifoldProjection
 
 include("manifold_projection.jl")
 
