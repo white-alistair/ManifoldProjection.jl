@@ -1,0 +1,4 @@
+name = "ManifoldProjection"
+uuid = "0bb9d2af-6fb0-446f-80e1-1e677ecc1df6"
+authors = ["Alistair White <alistair@pik-potsdam.de>"]
+version = "0.1.0"

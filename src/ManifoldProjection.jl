@@ -1,6 +1,6 @@
 module ManifoldProjection
 
-export HairerManifoldProjection
+export HairerProjection
 
 include("manifold_projection.jl")
 

@@ -1,15 +1,15 @@
-struct HairerManifoldProjection{C<:Function, J<:Function, T<:AbstractFloat, M<:Integer}
+struct HairerProjection{C<:Function, J<:Function, T<:AbstractFloat, M<:Integer}
     constraints::C
     jacobian::J
     tolerance::T
     maxiters::M
 end
 
-function HairerManifoldProjection(constraints::C, jacobian::J, tolerance::T) where {C,J,T}
-    HairerManifoldProjection{C,J,T,Int64}(constraints, jacobian, tolerance, 10)
+function HairerProjection(constraints::C, jacobian::J, tolerance::T) where {C,J,T}
+    HairerProjection{C,J,T,Int64}(constraints, jacobian, tolerance, 10)
 end
 
-function (manifold_projection::HairerManifoldProjection{C,J,T,M})(u0::Vector{T}) where {C,J,T,M}
+function (manifold_projection::HairerProjection{C,J,T,M})(u0::Vector{T}) where {C,J,T,M}
     (; constraints, jacobian, tolerance, maxiters) = manifold_projection
 
     N = size(constraints(u0))[1]  # Number of constraints
