@@ -1,3 +1,6 @@
+using Pkg
+Pkg.instantiate()
+
 using ManifoldProjection, ConservativeDynamicalSystems, Random, Test
 
 @testset "ManifoldProjection.jl" begin
