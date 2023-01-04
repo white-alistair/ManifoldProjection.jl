@@ -1,7 +1,7 @@
 module ManifoldProjection
 
-export HairerProjection
+export CoordinateProjection
 
-include("manifold_projection.jl")
+include("coordinate_projection.jl")
 
 end
